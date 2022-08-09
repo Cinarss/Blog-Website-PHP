@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+body{
+    font-family: 'Roboto Mono', monospace;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 1rem;
+    justify-content: center;
+
+
+}
+
+.navbar-container a{ 
+    margin: 1rem;
+    font-size: 1.3rem;
+       
+}
