@@ -177,3 +177,17 @@ input {
     flex-direction: row;
     justify-content: space-around;
   }
+
+
+  .menu-container{
+    display: flex;
+    justify-content: center;
+    background-color: #8b8a8b;
+  
+  }
+  
+  .menu-container a{
+    margin: 1rem;
+    text-decoration: none;
+    color: #ac01a3;
+  }

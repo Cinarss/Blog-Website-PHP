@@ -178,4 +178,78 @@ include "../loginBlog/function.php";
         }
     }
 
+
+    if(isset($_POST["adminlogin"])){
+        $user_mail = $_POST["user_mail"];
+        $user_password = $_POST["user_password"];
+
+        $usersor=$db->prepare("SELECT * FROM user where user_mail=:mail and user_password=:password and user_access=:access");
+        $usersor->execute(array(
+            "mail" => $user_mail,
+            "password" => $user_password,
+            "access" => 5
+           
+            
+        ));
+        
+        echo $say=$usersor->rowCount();
+
+        if($say==1){
+           $_SESSION["user_mail"] = $user_mail;
+            Header("Location:../adminPanel/admin.php?durum=ok");
+            exit;
+        }else{
+            Header("Location:../adminPanel/login.php?durum=accessdenied");
+            exit;
+        }
+    }
+
+
+
+    if ($_GET['adminBlogDelete']=="ok") {
+
+        $sil=$db->prepare("DELETE from blog_share where blog_id=:id");
+        $kontrol=$sil->execute(array(
+            'id' => $_GET['blog_id']
+            ));
+    
+    
+        if ($kontrol) {
+    
+    
+            Header("Location:../adminPanel/adminBlogs.php?sil=ok");
+    
+    
+        } else {
+    
+            Header("Location:../adminPanel/adminBlogs.php?sil=no");
+    
+        }
+    
+    
+    }
+
+    if ($_GET['adminUserDelete']=="ok") {
+
+        $sil=$db->prepare("DELETE from user where user_id=:id");
+        $kontrol=$sil->execute(array(
+            'id' => $_GET['user_id']
+            ));
+    
+    
+        if ($kontrol) {
+    
+    
+            Header("Location:../adminPanel/adminUsers.php?sil=ok");
+    
+    
+        } else {
+    
+            Header("Location:../adminPanel/adminUsers.php?sil=no");
+    
+        }
+    
+    
+    }
+
 ?>
